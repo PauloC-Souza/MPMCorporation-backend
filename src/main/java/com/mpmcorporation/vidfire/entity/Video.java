@@ -11,9 +11,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Video {
 
-    private Integer id;
+    private String uuid;
 
-    private String nom_arquivo;
+    private String nome;
+
+    private String descricao;
 
     private String video;
 }
