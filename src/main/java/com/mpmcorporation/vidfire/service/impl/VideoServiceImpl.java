@@ -1,7 +1,6 @@
 package com.mpmcorporation.vidfire.service.impl;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.WriteResult;
 import com.mpmcorporation.vidfire.entity.Video;
@@ -26,32 +25,29 @@ public class VideoServiceImpl extends BaseService implements VideoService {
             e.printStackTrace();
         }
 
+        final String uuid = gerarUuid();
         video.setNome(arquivo.getOriginalFilename());
-        video.setUuid(gerarUuid());
+        video.setUuid(uuid);
         video.setDescricao(descricao);
+        video.setTipo(arquivo.getContentType());
 
-        ApiFuture<WriteResult> apiFuture = getFirestore()
-                .collection(COLLECTION_NAME)
-                .document(video.getUuid())
-                .set(video);
+        ApiFuture<WriteResult> apiFuture = salvarFirestore(COLLECTION_NAME, video, uuid);
 
         return apiFuture.get().getUpdateTime().toString();
     }
 
     @Override
-    public Video BuscarVideo(String uuid) throws ExecutionException, InterruptedException {
-
-        DocumentReference reference = getFirestore()
-                .collection(COLLECTION_NAME)
-                .document(uuid);
-
-        ApiFuture<DocumentSnapshot> apiFuture = reference.get();
-        DocumentSnapshot document = apiFuture.get();
+    public Video buscarVideo(String uuid) {
+        DocumentSnapshot document;
+        try {
+            document = buscarFirestore(COLLECTION_NAME, uuid);
+        } catch (ExecutionException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
         if(document.exists()) {
            Video video = document.toObject(Video.class);
-           Base64.decodeBase64(video.getVideo());
-           return video;
+            return video;
         } else {
             return new Video();
         }

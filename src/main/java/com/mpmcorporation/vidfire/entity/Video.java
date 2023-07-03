@@ -5,11 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Video {
+public class Video implements Serializable {
 
     private String uuid;
 
@@ -18,4 +20,6 @@ public class Video {
     private String descricao;
 
     private String video;
+
+    private String tipo;
 }

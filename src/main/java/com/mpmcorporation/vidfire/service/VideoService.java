@@ -9,5 +9,6 @@ public interface VideoService {
 
     String salvar(MultipartFile arquivo, String descricao) throws ExecutionException, InterruptedException;
 
-    Video BuscarVideo(String uuid) throws ExecutionException, InterruptedException;
+    Video buscarVideo(String uuid) throws ExecutionException, InterruptedException;
+
 }
