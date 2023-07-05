@@ -5,15 +5,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Video {
+public class Video implements Serializable {
 
-    private Integer id;
+    private String uuid;
 
-    private String nom_arquivo;
+    private String nome;
+
+    private String descricao;
 
     private String video;
+
+    private String tipo;
 }
