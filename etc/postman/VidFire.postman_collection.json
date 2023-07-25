@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "962c8315-c810-4c80-bbbe-771b8779ba1c",
+		"name": "VidFire",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18310446"
+	},
+	"item": [
+		{
+			"name": "Salvar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "arquivo",
+							"type": "file",
+							"src": "/C:/Users/pauli/Downloads/VÍDEO DE 1 SEGUNDO !.mp4"
+						},
+						{
+							"key": "descricao",
+							"value": "novo video teste salvar",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/video",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"video"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/video/buscar/25557600635d41a487a60de0d01d74db",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"video",
+						"buscar",
+						"25557600635d41a487a60de0d01d74db"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "download",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/video/download/fe226dbf342a41bc954c51cc1b2df91b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"video",
+						"download",
+						"fe226dbf342a41bc954c51cc1b2df91b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Novo usuário",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\" : \"email@gmail.com\",\r\n    \"password\" : \"1234\",\r\n    \"role\" : \"ADMIN\",\r\n    \"nome\" : \"Paulo\", \r\n    \"sobrenome\" : \"Alguma coisa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/usuarios/cadastrar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"usuarios",
+						"cadastrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
